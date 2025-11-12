@@ -6,9 +6,9 @@ public class Sandwich extends MenuItem{
     private BreadType bread;
     private SandwichSize size;
     private boolean toasted;
-    private final ArrayList<MeatType> meats;
-    private final ArrayList<CheeseType> cheeses;
-    private final ArrayList<RegularTopping> regularToppings;
+//    private final ArrayList<MeatType> meats;
+//    private final ArrayList<CheeseType> cheeses;
+//    private final ArrayList<RegularTopping> regularToppings;
     private final ArrayList<SauceType> sauces;
 
     public Sandwich(String name, double basePrice, BreadType bread, SandwichSize size, boolean toasted) {
@@ -16,9 +16,9 @@ public class Sandwich extends MenuItem{
         this.bread = bread;
         this.size = size;
         this.toasted = toasted;
-        this.meats = new ArrayList<>();
-        this.cheeses = new ArrayList<>();
-        this.regularToppings = new ArrayList<>();
+//        this.meats = new ArrayList<>();
+//        this.cheeses = new ArrayList<>();
+//        this.regularToppings = new ArrayList<>();
         this.sauces = new ArrayList<>();
     }
 
