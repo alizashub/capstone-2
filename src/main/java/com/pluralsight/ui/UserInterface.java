@@ -106,7 +106,7 @@ public class UserInterface {
         };
     }
 
-    public DrinkFlavour promptingForDrinkFlavour(){
+    public DrinkFlavour promptingForDrinkFlavour() {
         System.out.println("""
                 Choose drink flavour; 
                 1)Cola
@@ -122,16 +122,38 @@ public class UserInterface {
             case 3 -> DrinkFlavour.SPRITE;
             case 4 -> DrinkFlavour.PEPSI;
             default -> DrinkFlavour.COLA;
-
-
         };
     }
-//
-//    public ChipType promptingForChipType();
-//
-//    public boolean confirmOrder();
 
-    private int readUserIntInput(int defaultValue){
+    public ChipType promptingForChipType() {
+        System.out.println("""
+                Choose Chip type:
+                1)Lays,
+                2)Doritos,
+                3)Ruffles,
+                4)Takis
+                """);
+
+        int choice = readUserIntInput(1);
+        return switch (choice) {
+            case 1 -> ChipType.LAYS;
+            case 2 -> ChipType.DORITOS;
+            case 3 -> ChipType.RUFFLES;
+            case 4 -> ChipType.TAKIS;
+            default -> ChipType.LAYS;
+        };
+    }
+
+    public int confirmOrder() {
+        System.out.println("""
+                Comfirm Order:
+                1)Yes
+                0) No
+                """);
+        return readUserIntInput(1);
+    }
+
+    private int readUserIntInput(int defaultValue) {
         try {
             return Integer.parseInt(myScanner.nextLine());
         } catch (NumberFormatException e) {
