@@ -2,20 +2,20 @@ package com.pluralsight.models;
 
 public class Drink extends MenuItem {
     private final DrinkSize size;
-    private final String flavor;
+    private final DrinkFlavour flavor;
 
-    public Drink(String name, double basePrice, DrinkSize size, String flavor) {
+    public Drink(String name, double basePrice, DrinkSize size, DrinkFlavour flavor) {
         super(name, basePrice);
 
         this.size = size;
-        this.flavor = flavor.trim();
+        this.flavor = flavor;
     }
 
     public DrinkSize getSize() {
         return size;
     }
 
-    public String getFlavor() {
+    public DrinkFlavour getFlavor() {
         return flavor;
     }
 
@@ -25,7 +25,7 @@ public class Drink extends MenuItem {
     }
     @Override
     public String getSummary() {
-        return size.toString() + " " + flavor + " drink";
+        return size + " " + flavor + " drink($" + getPrice() + ")";
     }
 
 }
