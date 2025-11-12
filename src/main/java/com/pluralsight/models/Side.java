@@ -1,16 +1,12 @@
 package com.pluralsight.models;
 
-public enum SauceType {
-    MAYO("Mayo"),
-    MUSTARD("Mustard"),
-    KETCHUP("Ketchup"),
-    RANCH("Ranch"),
-    THOUSAND_ISLAND("Thousand Island"),
-    VINAIGRETTE("Vinaigrette");
+public enum Side {
+    AU_JUS("Au Jus"),
+    Sauce("Sauce");
 
     private final String displayName;
 
-    SauceType(String displayName) {
+    Side(String displayName) {
         this.displayName = displayName;
     }
 
@@ -23,3 +19,4 @@ public enum SauceType {
         return displayName;
     }
 }
+
