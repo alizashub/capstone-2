@@ -2,34 +2,44 @@ package com.pluralsight.models;
 
 public class Topping {
     private final ToppingType type;
-    private int quantity;
+    // only true for premium opts like meat & cheese
+    private final boolean extra;
 
-    public Topping(ToppingType type) {
-        if ( type == null) throw new IllegalArgumentException("ToppingType cannot be null.");
+    public Topping(ToppingType type, boolean extra) {
         this.type = type;
-        this.quantity = 1;
+        this.extra = extra;
     }
 
     public ToppingType getType() {
         return type;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public boolean isExtra() {
+        return extra;
     }
 
-    public void increasingQuantityByOne(){
-        //add a portion
-        quantity++;
-    }
-
-    public void decreasingQuantityByOne(){
-        // remove portion but not below 1
-        if (quantity > 1 ) quantity--;
-    }
-
-    @Override
-    public String toString(){
-        return type.getDisplayName() + "x" + quantity;
+    public double getPriceForSize(SandwichSize size){
+        // if regular topping, no price
+        if (!type.isPremium()){
+            return 0.0;
+        }
+        double price = 0.0;
+        switch (size) {
+            case FOUR:
+                price = type.getPrice4;
+                if(extra) price =+ type.getExtra4;
+                break;
+            case EIGHT:
+                price = type.getPrice8;
+                if(extra) price =+ type.getExtra8;
+                break;
+            case TWELVE:
+                price = type.getPrice12;
+                if(extra) price =+ type.getExtra12;
+                break;
+        }
+        return price;
     }
 }
+
+

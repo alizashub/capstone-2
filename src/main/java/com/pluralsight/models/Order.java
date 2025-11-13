@@ -1,74 +1,55 @@
 package com.pluralsight.models;
-
 import java.util.ArrayList;
 
+/**
+ * Order will hold a customer's full order eg. sandwiches, drinks and chip.
+ */
+
 public class Order {
-    private final ArrayList<Sandwich> sandwiches;
-    private final ArrayList<Drink> drinks;
-    private final ArrayList<Chips> chips;
-    private double totalPrice;
+    private ArrayList<MenuItem> items;
 
     public Order() {
-        this.totalPrice = 0.0;
-        this.sandwiches = new ArrayList<>();
-        this.drinks = new ArrayList<>();
-        this.chips = new ArrayList<>();
+        this.items = new ArrayList<MenuItem>();
     }
 
-    public void addSandwich(Sandwich sandwich){
-        sandwiches.add(sandwich);
-        totalPrice = totalPrice + sandwich.getPrice();
+    // add any menu item to the array
+    public void addItem(MenuItem item) {
+        items.add(item);
     }
 
-    public void addDrink(Drink drink) {
-        drinks.add(drink);
-        totalPrice = totalPrice + drink.getPrice();
+    public ArrayList<MenuItem> getItems() {
+        return items;
     }
 
-    public void addChips(Chips chip){
-        chips.add(chip);
-        totalPrice = totalPrice+chip.getPrice();
-    }
+    // calculating total cost of all items
+    public double getTotal() {
+        double total = 0.0;
 
-    public  double getTotalOrderPrice(){
-        return totalPrice;
-    }
-
-    public boolean isEmpty(){
-        return sandwiches.isEmpty()&& drinks.isEmpty()&&chips.isEmpty();
-    }
-
-    public ArrayList<Sandwich> getSandwiches() {
-        return sandwiches;
-    }
-
-    public ArrayList<Drink> getDrinks() {
-        return drinks;
-    }
-
-    public ArrayList<Chips> getChips() {
-        return chips;
-    }
-
-    public String getSummary(){
-        StringBuilder sb = new StringBuilder("Order Summary");
-
-        if (sandwiches.isEmpty()&& drinks.isEmpty()&&chips.isEmpty()) {
-            sb.append("No items are currently in your oder.");
+        for (int i = 0; i < items.size(); i++) {
+            total = total + items.get(i).calculatePrice();
         }
-        for (Sandwich s : sandwiches) sb.append(s.getSummary()).append("\n");
-        for (Drink d : drinks) sb.append(d.getSummary()).append("\n");
-        for (Chips c : chips) sb.append(c.getSummary()).append("\n");
-
-        sb.append("\n");
-        sb.append(String.format("Total: $%.2f\n",getTotalOrderPrice()));
-
-        return sb.toString();
+        return total;
     }
-    public void clearorder(){
-        sandwiches.clear();
-        drinks.clear();
-        chips.clear();
-        totalPrice = 0.0;
+
+    public String generateReceiptText() {
+        String text = "";
+        System.out.println("Deli Receipt");
+
+        for (int i = 0; i < items.size(); i++) {
+            MenuItem m = items.get(i);
+
+            text += (i + 1) + ") " + m.getName() + " -$" + m.calculatePrice() + "\n";
+
+            // if item is a sandwhich, add detail breakdown
+            if (m instanceof Sandwich) {
+                Sandwich s = (Sandwich) m;
+                text += s.getDetailedDescription;
+            }
+            text += "\n";
+        }
+        text += "Total:$ " + getTotal() + "\n";
+        text += "--------------------\n";
+
+        return text;
     }
 }

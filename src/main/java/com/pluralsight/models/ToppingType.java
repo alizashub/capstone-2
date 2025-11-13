@@ -69,19 +69,29 @@ public enum ToppingType {
     }
 
     public double getBasePrice(SandwichSize size) {
-        return switch (size) {
-            case FOUR -> price4;
-            case EIGHT -> price8;
-            case TWELVE -> price12;
-        };
+         switch (size) {
+            case FOUR :
+                return price4;
+             case EIGHT :
+                 return price8;
+             case TWELVE :
+                 return price12;
+             default :
+                 return 0;
+        }
     }
 
     public double getExtraPrice(SandwichSize size){
-        return switch (size) {
-            case FOUR -> extra4;
-            case EIGHT -> extra8;
-            case TWELVE -> extra12;
-        };
+         switch (size) {
+             case FOUR :
+                 return extra4;
+             case EIGHT :
+                 return extra8;
+             case TWELVE :
+                 return extra12;
+             default:
+                 return 0;
+        }
     }
 
     public ToppingCategory getCategory() {

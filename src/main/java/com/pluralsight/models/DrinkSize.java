@@ -1,14 +1,20 @@
 package com.pluralsight.models;
 
 public enum DrinkSize {
-    SMALL(2.00),
-    MEDIUM(2.50),
-    LARGE(3.00);
+    SMALL(2.00,"Small"),
+    MEDIUM(2.50,"Medium"),
+    LARGE(3.00,"Large");
 
     private final double price;
+    private final String displayName;
 
-    DrinkSize(double price) {
+    DrinkSize(double price, String displayName) {
         this.price = price;
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public double getPrice() {
@@ -17,11 +23,6 @@ public enum DrinkSize {
 
     @Override
     public String toString(){
-        // the name method gives you the exact constant name in all uppercase
-        // the lowercase turns it all to lowercase
-        String s = name().toLowerCase();
-        //substring method allows to slice the string into 2 parts
-        // turns the char at the 0 index to upper and keeps the rest starting from index 1 to lowercase
-        return s.substring(0,1).toUpperCase()+s.substring(1);
+        return displayName;
     }
 }

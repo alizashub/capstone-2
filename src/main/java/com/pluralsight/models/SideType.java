@@ -1,14 +1,12 @@
 package com.pluralsight.models;
 
-public enum ChipType {
-    LAYS("Lays"),
-    DORITOS("Doritos"),
-    RUFFLES("Ruffles"),
-    TAKIS("Takis");
+public enum SideType {
+    AU_JUS("Au Jus"),
+    SAUCE("Sauce");
 
     private final String displayName;
 
-    ChipType(String displayName) {
+    SideType(String displayName) {
         this.displayName = displayName;
     }
 
@@ -17,7 +15,7 @@ public enum ChipType {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return displayName;
     }
 }

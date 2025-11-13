@@ -4,26 +4,17 @@ public class Chips extends MenuItem {
     private final ChipType type;
     private static final double CHIP_PRICE = 1.50;
 
-    public Chips(String name, double basePrice, ChipType type) {
-        super(name, basePrice);
-
-        if (type == null) {
-            throw new IllegalArgumentException("Chip type cannot be null.");
-        }
+    public Chips(String name, ChipType type) {
+        super("Chips");
         this.type = type;
     }
-
-    public ChipType getType() {
-        return type;
-    }
-
     @Override
-    public double getPrice(){
+    public double calculatePrice(){
         return CHIP_PRICE;
     }
 
     @Override
-    public String getSummary(){
-        return type.toString() + " chips";
+    public String getName(){
+        return "Chips (" + type.getDisplayName()+ ")";
     }
 }

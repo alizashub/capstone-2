@@ -1,31 +1,26 @@
 package com.pluralsight.models;
 
+/**
+ * Drink has 3 sizes eg. small, medium, large
+ */
 public class Drink extends MenuItem {
     private final DrinkSize size;
     private final DrinkFlavour flavor;
 
-    public Drink(String name, double basePrice, DrinkSize size, DrinkFlavour flavor) {
-        super(name, basePrice);
-
+    public Drink(String name, DrinkSize size, DrinkFlavour flavor) {
+        super("Drink");
         this.size = size;
         this.flavor = flavor;
     }
 
-    public DrinkSize getSize() {
-        return size;
-    }
-
-    public DrinkFlavour getFlavor() {
-        return flavor;
-    }
-
     @Override
-    public double getPrice(){
+    public double calculatePrice(){
         return size.getPrice();
     }
+
     @Override
-    public String getSummary() {
-        return size + " " + flavor + " drink($" + getPrice() + ")";
+    public String getName(){
+        return size.getDisplayName() + "Drink (" + flavor.name()+ ")";
     }
 
 }

@@ -1,22 +1,23 @@
 package com.pluralsight.models;
 
-public enum Side {
-    AU_JUS("Au Jus"),
-    Sauce("Sauce");
+public class Side extends MenuItem{
 
-    private final String displayName;
+    private final SideType type;
 
-    Side(String displayName) {
-        this.displayName = displayName;
-    }
+    private static final double PRICE = 0.0;
 
-    public String getDisplayName() {
-        return displayName;
+    public Side(SideType type) {
+        super("Side");
+        this.type = type;
     }
 
     @Override
-    public String toString(){
-        return displayName;
+    public double calculatePrice(){
+        return PRICE;
+    }
+
+    @Override
+    public String getName(){
+        return "Side (" + type.getDisplayName() + ")";
     }
 }
-
