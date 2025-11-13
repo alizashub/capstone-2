@@ -1,74 +1,20 @@
 package com.pluralsight.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Sandwich extends MenuItem{
+    public class Sandwich extends MenuItem {
     private BreadType bread;
     private SandwichSize size;
     private boolean toasted;
 
-    private final ArrayList<Topping> toppings;
-    private final ArrayList<SauceType> sauces;
+    // free toppings
+    private final ArrayList<ToppingType> regularToppings = new ArrayList<>();
+    private final ArrayList<SauceType> sauces = new ArrayList<>();
 
-    public Sandwich(String name, double basePrice, BreadType bread, SandwichSize size, boolean toasted) {
-        super(name, basePrice);
-        this.bread = bread;
-        this.size = size;
-        this.toasted = toasted;
+    // premium options count
+    private final HashMap<ToppingType, Integer> meats = new HashMap<>();
+    private final HashMap<ToppingType, Integer> cheese = new HashMap<>();
 
-        this.toppings = new ArrayList<>();
-        this.sauces = new ArrayList<>();
-    }
-
-    public BreadType getBread() {
-        return bread;
-    }
-
-    public SandwichSize getSize() {
-        return size;
-    }
-
-    public boolean isToasted() {
-        return toasted;
-    }
-
-    public void setToasted(boolean toasted) {
-        this.toasted = toasted;
-    }
-
-   public ArrayList<Topping> getToppings(){
-        return toppings;
-   }
-
-   public void addTopping(Topping topping){
-        if(topping != null) {
-            toppings.add(topping);
-        }
-   }
-
-   public ArrayList<SauceType>getSauces(){
-        return sauces;
-   }
-
-   public void addSauce(SauceType sauce) {
-        if(sauce != null) {
-            sauces.add(sauce);
-        }
-   }
-
-    @Override
-    public  double getPrice(){
-        double total = getBasePrice();
-
-        for (Topping t : toppings) {
-            total = total + t.getPrice();
-        }
-        return total;
-    }
-
-    @Override
-    public String getSummary() {
-        return size.toString()+ " " + bread.toString() + (toasted ? "(toasted)" : " ");
-    }
 
 }

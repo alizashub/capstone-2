@@ -59,7 +59,7 @@ public class UserInterface {
 
     public SandwichSize promptingUserForSandwhichSize() {
         System.out.println("""
-                Choose Sandwich Size; 
+                Choose Sandwich Size;
                 1) 4"
                 2) 8"
                 3) 12"
@@ -78,97 +78,97 @@ public class UserInterface {
 
     }
 
-    public ArrayList<Topping> promptingForRegularToppings(SandwichSize){
+    public ArrayList<Topping> promptingForRegularToppings(SandwichSize) {
         ArrayList<Topping> regulars = new ArrayList<>();
         if (!readYes)
 
 
-    public DrinkSize promptingForDrinkSize() {
-        System.out.println("""
-                Choose Drink Size:
-                1) Small($2.00)
-                2)Medium($2.50)
-                3)Large($3.00)
-                Enter your choice (1-3): """);
+            public DrinkSize promptingForDrinkSize () {
+            System.out.println("""
+                    Choose Drink Size:
+                    1) Small($2.00)
+                    2)Medium($2.50)
+                    3)Large($3.00)
+                    Enter your choice (1-3): """);
 
-        int choice = readUserIntInput(1);
+            int choice = readUserIntInput(1);
 
-        return switch (choice) {
-            case 1 -> DrinkSize.SMALL;
-            case 2 -> DrinkSize.MEDIUM;
-            case 3 -> DrinkSize.LARGE;
-            default -> DrinkSize.SMALL;
-        };
-    }
+            return switch (choice) {
+                case 1 -> DrinkSize.SMALL;
+                case 2 -> DrinkSize.MEDIUM;
+                case 3 -> DrinkSize.LARGE;
+                default -> DrinkSize.SMALL;
+            };
+        }
 
-    public DrinkFlavour promptingForDrinkFlavour() {
-        System.out.println("""
-                Choose drink flavour; 
-                1)Cola
-                2)Fanta
-                3)Sprite
-                4)Pepsi
-                Enter choice (1-4)
-                """);
-        int choice = readUserIntInput(1);
-        return switch (choice) {
-            case 1 -> DrinkFlavour.COLA;
-            case 2 -> DrinkFlavour.FANTA;
-            case 3 -> DrinkFlavour.SPRITE;
-            case 4 -> DrinkFlavour.PEPSI;
-            default -> DrinkFlavour.COLA;
-        };
-    }
+        public DrinkFlavour promptingForDrinkFlavour () {
+            System.out.println("""
+                    Choose drink flavour;
+                    1)Cola
+                    2)Fanta
+                    3)Sprite
+                    4)Pepsi
+                    Enter choice (1-4)
+                    """);
+            int choice = readUserIntInput(1);
+            return switch (choice) {
+                case 1 -> DrinkFlavour.COLA;
+                case 2 -> DrinkFlavour.FANTA;
+                case 3 -> DrinkFlavour.SPRITE;
+                case 4 -> DrinkFlavour.PEPSI;
+                default -> DrinkFlavour.COLA;
+            };
+        }
 
-    public ChipType promptingForChipType() {
-        System.out.println("""
-                Choose Chip type:
-                1)Lays,
-                2)Doritos,
-                3)Ruffles,
-                4)Takis
-                """);
+        public ChipType promptingForChipType () {
+            System.out.println("""
+                    Choose Chip type:
+                    1)Lays,
+                    2)Doritos,
+                    3)Ruffles,
+                    4)Takis
+                    """);
 
-        int choice = readUserIntInput(1);
-        return switch (choice) {
-            case 1 -> ChipType.LAYS;
-            case 2 -> ChipType.DORITOS;
-            case 3 -> ChipType.RUFFLES;
-            case 4 -> ChipType.TAKIS;
-            default -> ChipType.LAYS;
-        };
-    }
+            int choice = readUserIntInput(1);
+            return switch (choice) {
+                case 1 -> ChipType.LAYS;
+                case 2 -> ChipType.DORITOS;
+                case 3 -> ChipType.RUFFLES;
+                case 4 -> ChipType.TAKIS;
+                default -> ChipType.LAYS;
+            };
+        }
 
-    public int confirmOrder() {
-        System.out.println("""
-                Comfirm Order:
-                1)Yes
-                0) No
-                """);
-        return readUserIntInput(1);
-    }
+        public int confirmOrder () {
+            System.out.println("""
+                    Comfirm Order:
+                    1)Yes
+                    0) No
+                    """);
+            return readUserIntInput(1);
+        }
 
-    private int readUserIntInput() {
-        while (true) {
-            String input = myScanner.nextLine().trim();
-            try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number : ");
+        private int readUserIntInput () {
+            while (true) {
+                String input = myScanner.nextLine().trim();
+                try {
+                    return Integer.parseInt(input);
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid number : ");
+                }
             }
         }
-    }
 
-    private boolean readYesNo(String prompt) {
-        while (true) {
-            System.out.println(prompt + "(1 = Yes", 0 = No): ");
-            int value = readUserIntInput();
-            if (value == 1) return true;
-            if (value == 0) return false;
+        private boolean readYesNo (String prompt){
+            while (true) {
+                System.out.println(prompt + "(1 = Yes", 0 = No):");
+                int value = readUserIntInput();
+                if (value == 1) return true;
+                if (value == 0) return false;
 
-            System.out.println("Please enter 1 for Yes OR 0 for No.");
+                System.out.println("Please enter 1 for Yes OR 0 for No.");
+            }
         }
+
     }
-
-
 }

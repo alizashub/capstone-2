@@ -7,6 +7,5 @@ public class Application {
         UserInterface ui = new UserInterface();
         ui.showHomeScreen();
         ui.showOrderMenu();
-        ui.showOrderMenu();
     }
 }
