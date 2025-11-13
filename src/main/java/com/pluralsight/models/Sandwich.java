@@ -6,9 +6,8 @@ public class Sandwich extends MenuItem{
     private BreadType bread;
     private SandwichSize size;
     private boolean toasted;
-//    private final ArrayList<MeatType> meats;
-//    private final ArrayList<CheeseType> cheeses;
-//    private final ArrayList<RegularTopping> regularToppings;
+
+    private final ArrayList<Topping> toppings;
     private final ArrayList<SauceType> sauces;
 
     public Sandwich(String name, double basePrice, BreadType bread, SandwichSize size, boolean toasted) {
@@ -16,9 +15,8 @@ public class Sandwich extends MenuItem{
         this.bread = bread;
         this.size = size;
         this.toasted = toasted;
-//        this.meats = new ArrayList<>();
-//        this.cheeses = new ArrayList<>();
-//        this.regularToppings = new ArrayList<>();
+
+        this.toppings = new ArrayList<>();
         this.sauces = new ArrayList<>();
     }
 
@@ -34,13 +32,38 @@ public class Sandwich extends MenuItem{
         return toasted;
     }
 
-    public void addSauces( SauceType sauce) {
-        sauces.add(sauce);
+    public void setToasted(boolean toasted) {
+        this.toasted = toasted;
     }
+
+   public ArrayList<Topping> getToppings(){
+        return toppings;
+   }
+
+   public void addTopping(Topping topping){
+        if(topping != null) {
+            toppings.add(topping);
+        }
+   }
+
+   public ArrayList<SauceType>getSauces(){
+        return sauces;
+   }
+
+   public void addSauce(SauceType sauce) {
+        if(sauce != null) {
+            sauces.add(sauce);
+        }
+   }
 
     @Override
     public  double getPrice(){
-        return getBasePrice();
+        double total = getBasePrice();
+
+        for (Topping t : toppings) {
+            total = total + t.getPrice();
+        }
+        return total;
     }
 
     @Override

@@ -3,31 +3,39 @@ package com.pluralsight.models;
 import java.util.ArrayList;
 
 public class Order {
-    private final ArrayList<Sandwich> sandwiches = new ArrayList<>();
-    private final ArrayList<Drink> drinks = new ArrayList<>();
-    private final ArrayList<Chips> chips = new ArrayList<>();
+    private final ArrayList<Sandwich> sandwiches;
+    private final ArrayList<Drink> drinks;
+    private final ArrayList<Chips> chips;
+    private double totalPrice;
+
+    public Order() {
+        this.totalPrice = 0.0;
+        this.sandwiches = new ArrayList<>();
+        this.drinks = new ArrayList<>();
+        this.chips = new ArrayList<>();
+    }
 
     public void addSandwich(Sandwich sandwich){
         sandwiches.add(sandwich);
+        totalPrice = totalPrice + sandwich.getPrice();
     }
 
     public void addDrink(Drink drink) {
         drinks.add(drink);
+        totalPrice = totalPrice + drink.getPrice();
     }
 
     public void addChips(Chips chip){
         chips.add(chip);
+        totalPrice = totalPrice+chip.getPrice();
     }
 
     public  double getTotalOrderPrice(){
-        double total = 0.0;
-        for (Sandwich s : sandwiches)
-            total = total + s.getPrice();
-        for (Drink d : drinks)
-            total = total + d.getPrice();
-        for (Chips c : chips)
-            total = total + c.getPrice();
-        return total;
+        return totalPrice;
+    }
+
+    public boolean isEmpty(){
+        return sandwiches.isEmpty()&& drinks.isEmpty()&&chips.isEmpty();
     }
 
     public ArrayList<Sandwich> getSandwiches() {
@@ -56,5 +64,11 @@ public class Order {
         sb.append(String.format("Total: $%.2f\n",getTotalOrderPrice()));
 
         return sb.toString();
+    }
+    public void clearorder(){
+        sandwiches.clear();
+        drinks.clear();
+        chips.clear();
+        totalPrice = 0.0;
     }
 }

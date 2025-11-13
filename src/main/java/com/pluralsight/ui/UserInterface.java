@@ -2,6 +2,7 @@ package com.pluralsight.ui;
 
 import com.pluralsight.models.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -18,14 +19,7 @@ public class UserInterface {
                 0)Exit
                 Enter Your Choice:
                 """);
-
-        int choice = 0;
-        try {
-            choice = Integer.parseInt(myScanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Input");
-        }
-        return choice;
+        return readUserIntInput();
     }
 
     public int showOrderMenu() {
@@ -38,13 +32,7 @@ public class UserInterface {
                 0) Cancel Order
                 Enter your choice:
                 """);
-        int choice = 0;
-        try {
-            choice = Integer.parseInt(myScanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Input");
-        }
-        return choice;
+        return readUserIntInput();
     }
 
     public BreadType askingUserForBreadType() {
@@ -55,13 +43,17 @@ public class UserInterface {
                 3) Rye
                 4) Wrap
                 Enter choice (1-4)""");
-        int choice = readUserIntInput(1);
+
+      int choice = readUserIntInput();
+
         return switch (choice) {
             case 1 -> BreadType.WHITE;
             case 2 -> BreadType.WHEAT;
             case 3 -> BreadType.RYE;
             case 4 -> BreadType.WRAP;
-            default -> BreadType.WHITE;
+            default -> {
+                System.out.println("Please choose a number between 1-4.");
+                yield null; }
         };
     }
 
@@ -73,19 +65,22 @@ public class UserInterface {
                 3) 12"
                 Enter choice (1-3): """);
 
-        int choice = readUserIntInput(1);
+       int choice = readUserIntInput();
+
         return switch (choice) {
             case 1 -> SandwichSize.FOUR;
             case 2 -> SandwichSize.EIGHT;
             case 3 -> SandwichSize.TWELVE;
-            default -> SandwichSize.FOUR;
+            default -> {
+                System.out.println("Please choose a number between 1-3.");
+                yield null; }
         };
 
     }
 
-//    public boolean promptForToasted() {}
-//
-//    public Toppings promptingUserForToppings();
+    public ArrayList<Topping> promptingForRegularToppings(SandwichSize){
+        ArrayList<Topping> regulars = new ArrayList<>();
+        if (!readYes)
 
 
     public DrinkSize promptingForDrinkSize() {
@@ -153,13 +148,27 @@ public class UserInterface {
         return readUserIntInput(1);
     }
 
-    private int readUserIntInput(int defaultValue) {
-        try {
-            return Integer.parseInt(myScanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Iinvalid Input. Defaulting to" + defaultValue + "choice .");
-            return defaultValue;
+    private int readUserIntInput() {
+        while (true) {
+            String input = myScanner.nextLine().trim();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number : ");
+            }
         }
     }
+
+    private boolean readYesNo(String prompt) {
+        while (true) {
+            System.out.println(prompt + "(1 = Yes", 0 = No): ");
+            int value = readUserIntInput();
+            if (value == 1) return true;
+            if (value == 0) return false;
+
+            System.out.println("Please enter 1 for Yes OR 0 for No.");
+        }
+    }
+
 
 }
