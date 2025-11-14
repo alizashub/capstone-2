@@ -13,6 +13,7 @@ public class Sandwich extends MenuItem {
     private boolean toasted;
     // one list to sort all toppings
     private final ArrayList<Topping> toppings;
+
     private final ArrayList<SauceType> sauces;
 
 

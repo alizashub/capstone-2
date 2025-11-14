@@ -1,4 +1,5 @@
 package com.pluralsight.util;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,26 +17,27 @@ public class ReceiptWriter {
         File folder = new File("src/main/resources/receipts");
         // makes sure to see if a receipts folder exists
         if (!folder.exists()) {
-            folder.mkdir(); // create the folder if missing
-//        }
+            folder.mkdir();
+        }  // create the folder if missing
 
-            // creating a timestamp for the files
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
-            String timeStamp = now.format(formatter);
 
-            // the file path for each new file that will be created based on new order
-            File completeOrderFile = new File("src/main/resources/receipts", timeStamp + ".txt");
+        // creating a timestamp for the files
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+        String timeStamp = now.format(formatter);
 
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(completeOrderFile))) {
+        // the file path for each new file that will be created based on new order
+        File completeOrderFile = new File("src/main/resources/receipts", timeStamp + ".txt");
 
-                bufferedWriter.write(receiptText);
-                System.out.println("Receipt has been saved");
-            } catch (IOException e) {
-                System.out.println("Error saving receipt: " + e.getMessage());
-            }
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(completeOrderFile))) {
+
+            bufferedWriter.write(receiptText);
+            System.out.println("Receipt has been saved");
+        } catch (IOException e) {
+            System.out.println("Error saving receipt: " + e.getMessage());
         }
-
-
     }
+
+
 }
+

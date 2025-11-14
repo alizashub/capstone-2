@@ -125,6 +125,8 @@ public class UserInterface {
 
     private SandwichSize chooseSandwichSize() {
         System.out.println("\nChoose the size of your sandwich");
+
+        // returns all the enum constants as an array so we can loop over it
         SandwichSize[] sizes = SandwichSize.values();
 
         for (int i = 0; i < sizes.length; i++) {
@@ -132,6 +134,7 @@ public class UserInterface {
         }
         System.out.print("Enter your choice : ");
         int choice = readIntInRange(1, sizes.length);
+        // returns the chosen enum value choice -1 because user : 1 we convert that to the index which is 0
         return sizes[choice - 1];
     }
 

@@ -45,7 +45,7 @@ public class Order {
         // header
         text.append("========== Aliza's DELI RECEIPT ==========\n\n");
 
-        // Loop through every item in the order
+        // Loop through every item array in the order
         for (int i = 0; i < items.size(); i++) {
 
             MenuItem m = items.get(i);
