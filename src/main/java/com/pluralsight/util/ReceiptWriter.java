@@ -1,38 +1,32 @@
 package com.pluralsight.util;
-
-import com.pluralsight.models.Order;
-
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReceiptWriter {
-    public static void saveReceipt(Order order) {
-        String receiptTimeStamp = createTimeStamp();
-        String fileName = "src/main/resources/receipts" + receiptTimeStamp + ".txt";
-
-
-        StringBuilder receiptContent = new StringBuilder();
-        receiptContent.append("Deli Receipt");
-        receiptContent.append("Order Time:").append(receiptTimeStamp).append("\n\n");
-        receiptContent.append(order.getSummary());
-        receiptContent.append("Thanks for your order.");
-
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/receipts" + receiptTimeStamp + ".txt"))) {
-            bufferedWriter.write(receiptContent.toString());
-            System.out.println("Receipt saved.");
-        } catch (IOException e) {
-            System.out.println("Error");
+    public static void saveReceipt(String receiptText) {
+        File folder = new File("src/main/resources/receipts");
+        if (!folder.exists()) {
+            folder.mkdir(); // create the folder if missing
         }
-    }
 
-    private static String createTimeStamp() {
-        LocalDateTime currentTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
-        return currentTime.format(dateTimeFormatter);
+        // creating a timestamp for the files
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+        String timeStamp = now.format(formatter);
 
+        File completeOrderFile = new File("src/main/resources/receipts", timeStamp + ".txt");
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(completeOrderFile))) {
+
+            bufferedWriter.write(receiptText);
+            System.out.println("Receipt saved");
+        } catch (IOException e) {
+            System.out.println("Error" + e.getMessage());
+        }
     }
 
 

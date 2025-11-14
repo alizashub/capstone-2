@@ -53,7 +53,7 @@ public class Sandwich extends MenuItem {
 
     public String getDetailedDescription() {
         String text = "";
-        text += " Size: " + size.getDisplayName() + "\n";
+        text += " Size: " + size.getInches() + "\n";
         text += " Bread: " + bread.name() + "\n";
         text += " Toasted: " + (toasted ? "Yes" : "No") + "\n";
 
@@ -83,6 +83,6 @@ public class Sandwich extends MenuItem {
     }
     @Override
     public String getName(){
-        return size.getDisplayName() + "Sandwich (" + bread.name() + ")";
+        return size.getInches() + "Sandwich (" + bread.name() + ")";
     }
 }

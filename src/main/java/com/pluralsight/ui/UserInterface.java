@@ -1,258 +1,293 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.models.*;
+import com.pluralsight.util.ReceiptWriter;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner myScanner;
+    private Order currentOrder;
 
     public UserInterface() {
         this.myScanner = new Scanner(System.in);
     }
 
-    public int showHomeScreen() {
-        while (true) {
-            System.out.println("""
-                    Welcome!
-                    1)New Order
-                    0)Exit
-                    Enter Your Choice:
-                    """);
-            int choice = readUserIntInput();
+    public void start() {
+        boolean running = true;
 
-            if (choice == 1 || choice == 0) {
-                return choice;
-            }
-            System.out.println("Invalid choice. Please enter 1 or 0. ");
-        }
-    }
-
-    public int showOrderMenu() {
-        while (true) {
-            System.out.println("""
-                    Order Menu:
-                    1) Add Sandwich
-                    2) Add Drink
-                    3) Add Chips
-                    4) Checkout
-                    0) Cancel Order
-                    Enter your choice:
-                    """);
-            int choice = readUserIntInput();
-
-            if (choice >= 0 && choice <= 4) {
-                return choice;
-            }
-            System.out.println("Invalid choice.Please enter a number between 0-4.");
-        }
-    }
-
-    public BreadType askingUserForBreadType() {
-        while (true) {
-            System.out.println("""
-                    Choose Your Bread Type :
-                    1) White
-                    2) Wheat
-                    3) Rye
-                    4) Wrap
-                    Enter choice (1-4)""");
-
-            int choice = readUserIntInput();
+        while (running) {
+            int choice = showHomeScreen();
 
             switch (choice) {
-                case 1 -> {
-                    return BreadType.WHITE;
-                }
-                case 2 -> {
-                    return BreadType.WHEAT;
-                }
-                case 3 -> {
-                    return BreadType.RYE;
-                }
-                case 4 -> {
-                    return BreadType.WRAP;
-                }
+                case 1:
+                    startNewOrder();
+                    break;
+                case 0:
+                    System.out.println("Thank you for using Aliza's Deli App");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice, try again");
             }
-            System.out.println("Please choose a number between 1-4.");
         }
     }
 
-    public SandwichSize promptingUserForSandwhichSize() {
-        while (true) {
-            System.out.println("""
-                    Choose Sandwich Size;
-                    1) 4"
-                    2) 8"
-                    3) 12"
-                    Enter choice (1-3): """);
+    // homescreen
 
-            int choice = readUserIntInput();
+    private int showHomeScreen() {
+        System.out.println("""
+                Welcome!
+                1)New Order
+                0)Exit
+                Enter Your Choice:
+                """);
+        return readInt();
+    }
+
+    // order flow
+    private void startNewOrder() {
+        currentOrder = new Order();
+        boolean ordering = true;
+        while (ordering) {
+            int choice = showOrderScreen();
 
             switch (choice) {
-                case 1 -> {
-                    return SandwichSize.FOUR;
-                }
-                case 2 -> {
-                    return SandwichSize.EIGHT;
-                }
-                case 3 -> {
-                    return SandwichSize.TWELVE;
-                }
-            }
-            System.out.println("Please choose a number between 1-3.");
-
-        }
-    }
-
-    public DrinkSize askDrinkSize() {
-        while (true) {
-            System.out.println("""
-                     Choose Drink Size:
-                    1) Small ($2.00)
-                    2) Medium ($2.50)
-                    3) Large ($3.00)
-                    Enter choice (1–3): """);
-            int choice = readUserIntInput();
-            switch (choice) {
-                case 1 -> {
-                    return DrinkSize.SMALL;
-                }
-                case 2 -> {
-                    return DrinkSize.MEDIUM;
-                }
-                case 3 -> {
-                    return DrinkSize.LARGE;
-                }
-            }
-            System.out.println("Please enter a number between 1-3.");
-        }
-    }
-
-    public DrinkFlavour askDrinkFlavour() {
-        while (true) {
-            System.out.println("""
-                    Choose drink flavour; 
-                    1)Cola
-                    2)Fanta
-                    3)Sprite
-                    4)Pepsi
-                    Enter choice (1-4);""");
-
-            int choice = readUserIntInput();
-
-            switch (choice) {
-                case 1 -> {
-                    return DrinkFlavour.COLA;
-                }
-                case 2 -> {
-                    return DrinkFlavour.FANTA;
-                }
-                case 3 -> {
-                    return DrinkFlavour.SPRITE;
-                }
-                case 4 -> {
-                    return DrinkFlavour.PEPSI;
-                }
-            }
-            System.out.println("Please enter 1-4");
-        }
-    }
-
-    public ChipType promptingForChipType() {
-        while (true) {
-            System.out.println("""
-                    Choose Chip type:
-                    1)Lays,
-                    2)Doritos,
-                    3)Ruffles,
-                    4)Takis
-                    """);
-
-            int choice = readUserIntInput();
-            switch (choice) {
-                case 1 -> {
-                    return ChipType.LAYS;
-                }
-                case 2 -> {
-                    return ChipType.DORITOS;
-                }
-                case 3 -> {
-                    return ChipType.RUFFLES;
-                }
-                case 4 -> {
-                    return ChipType.TAKIS;
-                }
-            }
-            System.out.println("Please enter a number between 1-4.");
-        }
-    }
-
-    public ToppingType askPremiumMeat() {
-        while (true) {
-            System.out.println("""
-                    Choose a Meat you would like to add : 
-                    1) Chicken
-                    2) Bacon
-                    3) Steak
-                    4) Ham
-                    5) Salami
-                    6) Roast Beef
-                    0) Do not want to add meats 
-                    Enter choice: """);
-
-            int choice = readUserIntInput();
-                switch (choice) {
-                    case 1 -> { return ToppingType.CHICKEN; }
-                    case 2 -> { return ToppingType.BACON; }
-                    case 3 -> { return ToppingType.STEAK; }
-                    case 4 -> { return ToppingType.HAM; }
-                    case 5 -> { return ToppingType.SALAMI; }
-                    case 6 -> { return ToppingType.ROAST_BEEF; }
-                    case 0 ->
-                }
+                case 1:
+                    addSandwich();
+                    break;
+                case 2:
+                    addDrink();
+                    break;
+                case 3:
+                    addChips();
+                    break;
+                case 4:
+                    addSide();
+                    break;
+                case 5:
+                    checkout();
+                    ordering = false;
+                    break;
+                case 0:
+                    System.out.println("Order Cancelled");
+                    ordering = false;
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again.");
             }
         }
     }
 
+    private int showOrderScreen() {
+        System.out.println("""
+                Order Menu:
+                1) Add Sandwich
+                2) Add Drink
+                3) Add Chips
+                4) Add Sides
+                5) Checkout
+                0) Cancel Order
+                Enter your choice:
+                """);
+        return readInt();
+    }
 
-    public boolean confirmOrder() {
-        while (true) {
-            System.out.println("""
-                    Comfirm Order?
-                    1)Yes
-                    0) No
-                    """);
-            int value = readUserIntInput();
+    private void addSandwich() {
+        System.out.println("Let's Build A Sandwich");
+        SandwichSize size = chooseSandwichSize();
+        BreadType breadType = chooseBreadType();
+        boolean toasted = chooseToasted();
 
-            if (value == 1) return true;
-            if (value == 0) return false;
-            System.out.println("Enter 1 for Yes or 0 for No.");
+        Sandwich sandwich = new Sandwich("Custom Sandwich", breadType, size, toasted);
+
+        chooseToppings(sandwich);
+        chooseSauces(sandwich);
+
+        currentOrder.addItem(sandwich);
+        System.out.println("Sandwich has been added.");
+    }
+
+    private SandwichSize chooseSandwichSize() {
+        System.out.println("\nChoose the size of your sandwich:");
+        SandwichSize[] sizes = SandwichSize.values();
+
+        for (int i = 0; i < sizes.length; i++) {
+            System.out.println((i + 1) + ")" + sizes[i].toString() + "- $" + sizes[i].getBasePrice());
+        }
+
+        int choice = readIntInRange(1, sizes.length);
+        return sizes[choice - 1];
+    }
+
+    private BreadType chooseBreadType() {
+        System.out.println("Choose your bread type for the sandwich:");
+        BreadType[] breads = BreadType.values();
+
+        for (int i = 0; i < breads.length; i++) {
+            System.out.println((i + 1) + ")" + breads[i].getDisplayName());
+        }
+        int choice = readIntInRange(1, breads.length);
+
+        return breads[choice - 1];
+    }
+
+    private boolean chooseToasted() {
+        System.out.println("""
+                Would you like your bread toasted?
+                1) Yes
+                2) No
+                Enter your choice : 
+                """);
+        int choice = readIntInRange(1, 2);
+        return choice == 1;
+    }
+
+    private void chooseToppings(Sandwich sandwich) {
+        System.out.println("Toppings Avalible");
+        ToppingType[] tops = ToppingType.values();
+
+        boolean adding = true;
+
+        while (adding) {
+            System.out.println("Choose a Topping: ");
+            for (int i = 0; i < tops.length; i++) {
+                System.out.println((i + 1) + ")" + tops[i].getDisplayName());
+            }
+            System.out.println("0) Done");
+
+            int choice = readIntInRange(0, tops.length);
+            if (choice == 0) break;
+
+            ToppingType selected = tops[choice - 1];
+
+            boolean extra = false;
+
+            if (selected.isMeat() || selected.isCheese()) {
+                System.out.println("""
+                        Would you like to get an extra portion?
+                        1) Yes
+                        2) No
+                        """);
+                extra = readIntInRange(1, 2) == 1;
+            }
+            sandwich.addTopping(new Topping(selected, extra));
+            System.out.println(selected.getDisplayName() + "added.");
         }
     }
 
-    private int readUserIntInput() {
+    private void chooseSauces(Sandwich sandwich) {
+        System.out.println("Sauces");
+        SauceType[] sauces = SauceType.values();
+
+        boolean adding = true;
+        while (adding) {
+            System.out.println("Choose a sauces you would like to add.");
+            for (int i = 0; i < sauces.length; i++) {
+                System.out.println((i + 1) + ")" + sauces[i].getDisplayName());
+            }
+            System.out.println("0) Done");
+            int choice = readIntInRange(0, sauces.length);
+            if (choice == 0) break;
+
+        }
+    }
+
+    //DRINKS
+
+    private void addDrink(){
+        System.out.println("Add Drinks");
+
+        DrinkSize size = chooseDrinkSize();
+        DrinkFlavour flavour = chooseDrinkFlavour();
+
+        currentOrder.addItem(new Drink("Drink",size,flavour));
+        System.out.println("Drink Added.");
+    }
+
+    private DrinkSize chooseDrinkSize() {
+        System.out.println("\nChoose Drink Size:");
+
+        DrinkSize[] sizes = DrinkSize.values();
+        for (int i = 0; i < sizes.length; i++) {
+            System.out.println((i + 1) + ") " + sizes[i].getDisplayName() +
+                    " - $" + sizes[i].getPrice());
+        }
+        int choice = readIntInRange(1, sizes.length);
+        return sizes[choice - 1];
+    }
+
+    private DrinkFlavour chooseDrinkFlavour(){
+        System.out.println("Choose Drink Flavour");
+
+        DrinkFlavour[] flavor = DrinkFlavour.values();
+
+        for (int i = 0; i < flavor.length; i++) {
+            System.out.println((i + 1) + ") " + flavor[i].getDisplayName());
+        }
+        int choice = readIntInRange(1,flavor.length);
+        return flavor[choice - 1];
+    }
+
+    private void addChips(){
+        System.out.println("Add Chips");
+        ChipType[] chips = ChipType.values();
+
+        for (int i = 0; i < chips.length; i++) {
+            System.out.println((i + 1) + ") " + chips[i].getDisplayName());
+        }
+
+        int choice = readIntInRange(1, chips.length);
+
+        currentOrder.addItem(new Chips("Chips", (chips [ choice - 1 ])));
+        System.out.println("Chips added!");
+    }
+
+    private void addSide(){
+        System.out.println("Add Sides");
+        SideType[] sides = SideType.values();
+
+        for (int i = 0; i < sides.length; i++) {
+            System.out.println((i + 1) + ") " + sides[i].getDisplayName());
+        }
+
+        int choice = readIntInRange(1, sides.length);
+        currentOrder.addItem(new Side(sides[ choice - 1 ]));
+        System.out.println("Side added.");
+    }
+
+    private void checkout(){
+        System.out.println("Checkout");
+
+        String recieptText  = currentOrder.generateReceiptText();
+        System.out.println(recieptText );
+
+        ReceiptWriter.saveReceipt(recieptText );
+        System.out.println("Receipt saved!");
+    }
+
+
+    private int readInt() {
         while (true) {
-            String input = myScanner.nextLine().trim();
             try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number : ");
+                return Integer.parseInt(myScanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid choice, please try again. ");
             }
         }
     }
 
-    public boolean readYesNo(String prompt) {
+    private int readIntInRange(int min, int max) {
         while (true) {
-            System.out.println(prompt + " (1 = Yes, 0 = No):");
-            int value = readUserIntInput();
-
-            if (value == 1) return true;
-            if (value == 0) return false;
-
-            System.out.println("Invalid input. Please enter 1 or 0.");
+            int value = readInt();
+            if (value >= min && value < +max) {
+                return value;
+            }
+            System.out.print("Number must be between" + min + " and " + max + ": ");
         }
     }
-
 }
+
+
+

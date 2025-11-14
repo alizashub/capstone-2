@@ -43,7 +43,7 @@ public class Order {
             // if item is a sandwhich, add detail breakdown
             if (m instanceof Sandwich) {
                 Sandwich s = (Sandwich) m;
-                text += s.getDetailedDescription;
+                text += s.getDetailedDescription();
             }
             text += "\n";
         }
