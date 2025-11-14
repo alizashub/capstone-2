@@ -1,0 +1,20 @@
+========== Aliza's DELI RECEIPT ==========
+
+1) 4" Sandwich (White) - $7.0
+   Size: 4"
+ Sandwich Base Price: 5.50
+   Bread: White
+   Toasted: No
+
+   Toppings:
+      - (Veg) Peppers -------------- $0.00
+      - (Meat) Chicken (extra) -------------- $1.5
+
+   Sauces:
+      - Ketchup
+      - Mayo
+
+   Subtotal: $7.0
+
+Total: $7.0
+----------------------------------

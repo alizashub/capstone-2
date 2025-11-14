@@ -1,0 +1,16 @@
+========== Aliza's DELI RECEIPT ==========
+
+1) 4" Sandwich (White) - $5.5
+   Size: 4"
+   Bread: White
+   Toasted: No
+
+   Toppings:
+      None
+
+   Sauces: None
+
+   Subtotal: $5.5
+
+Total: $5.5
+----------------------------------

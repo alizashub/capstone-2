@@ -65,6 +65,7 @@ Each order generates a detailed receipt including:
 ## 🧩 Interesting Code Example
 
 ```java
+
 // using enumeration
 public enum ToppingType {
 
@@ -159,3 +160,17 @@ public enum ToppingType {
                  return 0;
         }
     }
+    
+```java
+   
+   
+   
+# 📂 Project Structure
+src/
+ └── main/
+     ├── java/
+     │    ├── com.pluralsight.models/     # All data models
+     │    ├── com.pluralsight.ui/         # UserInterface class
+     │    └── com.pluralsight.util/       # ReceiptWriter
+     └── resources/
+          └── receipts/                   # Auto-generated receipt files
