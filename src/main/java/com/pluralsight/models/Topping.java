@@ -27,6 +27,7 @@ public class Topping {
     // calculates the price for the topping for a specific sandwich size
 
     public double getPriceForSize(SandwichSize size) {
+
         // if regular topping, no price
         if (type.isRegular()) {
             return 0.0;

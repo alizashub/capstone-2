@@ -1,6 +1,6 @@
 # 🥪 Aliza's Deli  App
 
-### A simple, menu-driven Java application that lets users build a custom deli order — sandwiches, toppings, drinks, chips, sides — and saves an itemized receipt as a `.txt` file.
+### A simple, menu-driven Java application that lets users build a custom deli order —sandwiches, toppings, drinks, chips, sides — and saves an itemized receipt as a `.txt` file.
 
 Key Features :
 ---

@@ -73,6 +73,7 @@ public class Sandwich extends MenuItem {
 
         // adds sandwich size by adding the number, adding quotation marks and then going to next line
         text.append("   Size: ").append(size.getInches()).append("\"").append("\n");
+        text.append(" Sandwich Base Price: ").append(String.format("%.2f",size.getBasePrice())).append("\n");
         // adds bread name using the displayName label and then going to nextline
         text.append("   Bread: ").append(bread.getDisplayName()).append("\n");
         //add the toasted status and then adds two new lines
@@ -88,7 +89,7 @@ public class Sandwich extends MenuItem {
             for (Topping t : toppings) {
                 ToppingType type = t.getType();
                 if (type.getCategory() == ToppingCategory.REGULAR) {
-                    text.append("      - (Veg) ").append(type.getDisplayName()).append("\n");
+                    text.append("      - (Veg) ").append(type.getDisplayName()).append(" -------------- $0.00\n");
                 }
             }
 
@@ -112,7 +113,7 @@ public class Sandwich extends MenuItem {
 
                     double cost = t.getPriceForSize(size);
                     if (cost > 0) {
-                        text.append("   $").append(cost);
+                        text.append(" -------------- $").append(cost);
                     }
 
                     text.append("\n");
