@@ -70,45 +70,45 @@ Each order generates a detailed receipt including:
 public enum ToppingType {
 
     // Meats Option with addtional cost
-    STEAK("Steak", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    STEAK("Steak", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    HAM("Ham", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    HAM("Ham", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    SALAMI("Salami", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    SALAMI("Salami", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    ROAST_BEEF("Roast Beef", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    ROAST_BEEF("Roast Beef", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    CHICKEN("Chicken", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    CHICKEN("Chicken", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    BACON("Bacon", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
+    BACON("Bacon", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
     // Cheeses Options with addtional cost
-    AMERICAN("America Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    AMERICAN("America Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
 
-    PROVOLONE("Provolone Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    PROVOLONE("Provolone Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
 
-    CHEDDAR("Cheddar Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    CHEDDAR("Cheddar Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
 
-    SWISS("Swiss Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    SWISS("Swiss Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
 
     // Regular
-    LETTUCE("Lettuce", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    LETTUCE("Lettuce", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    PEPPERS("Peppers", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    PEPPERS("Peppers", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    ONIONS("Onions", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    ONIONS("Onions", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    TOMATOES("Tomatoes", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    TOMATOES("Tomatoes", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    JALAPENOS("Jalapeños", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    JALAPENOS("Jalapeños", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    CUCUMBERS("Cucumbers", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    CUCUMBERS("Cucumbers", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    PICKLES("Pickles", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    PICKLES("Pickles", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    GUACAMOLE("Guacamole", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
+    GUACAMOLE("Guacamole", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
 
-    MUSHROOMS("Mushrooms", ToppingCategory.REGULAR, 0, 0, 0,0,0,0);
+    MUSHROOMS("Mushrooms", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0);
 
     private final String displayName;
     private final ToppingCategory category;
@@ -136,36 +136,36 @@ public enum ToppingType {
     }
 
     public double getBasePrice(SandwichSize size) {
-         switch (size) {
-            case FOUR :
+        switch (size) {
+            case FOUR:
                 return price4;
-             case EIGHT :
-                 return price8;
-             case TWELVE :
-                 return price12;
-             default :
-                 return 0;
+            case EIGHT:
+                return price8;
+            case TWELVE:
+                return price12;
+            default:
+                return 0;
         }
     }
 
-    public double getExtraPrice(SandwichSize size){
-         switch (size) {
-             case FOUR :
-                 return extra4;
-             case EIGHT :
-                 return extra8;
-             case TWELVE :
-                 return extra12;
-             default:
-                 return 0;
+    public double getExtraPrice(SandwichSize size) {
+        switch (size) {
+            case FOUR:
+                return extra4;
+            case EIGHT:
+                return extra8;
+            case TWELVE:
+                return extra12;
+            default:
+                return 0;
         }
     }
+}
     
-```java
-   
-   
-   
-# 📂 Project Structure
+```
+
+# Project Structure
+```
 src/
  └── main/
      ├── java/
@@ -174,3 +174,4 @@ src/
      │    └── com.pluralsight.util/       # ReceiptWriter
      └── resources/
           └── receipts/                   # Auto-generated receipt files
+```
