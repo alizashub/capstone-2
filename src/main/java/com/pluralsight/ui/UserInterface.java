@@ -44,12 +44,10 @@ public class UserInterface {
         System.out.println("""
                 +++++++++++++++++++++++++++++
                 Welcome to Aliza's Deli App!!
-                +++++++++++++++++++++++++++++
-                
+                +++++++++++++++++++++++++++++               
                 1) New Order
-                0) Exit
-                
-                Enter Your Choice: """);
+                0) Exit""");
+        System.out.print("Enter Your Choice:");
         return readInt();
     }
 
@@ -95,13 +93,13 @@ public class UserInterface {
                 3) Add Chips
                 4) Add Sides
                 5) Checkout
-                0) Cancel Order
-                Enter your choice: """);
+                0) Cancel Order""");
+        System.out.print("Enter Your Choice:");
         return readInt();
     }
 
     private void addSandwich() {
-        System.out.println("\nLet's Build A Sandwich");
+        System.out.println("++++++++++++ Let's Build A Sandwich ++++++++++++");
 
         SandwichSize size = chooseSandwichSize();
         BreadType breadType = chooseBreadType();
@@ -117,13 +115,13 @@ public class UserInterface {
     }
 
     private SandwichSize chooseSandwichSize() {
-        System.out.println("\nChoose the size of your sandwich:");
+        System.out.println("\nChoose the size of your sandwich");
         SandwichSize[] sizes = SandwichSize.values();
 
         for (int i = 0; i < sizes.length; i++) {
             System.out.println((i + 1) + ")" + sizes[i].toString() + "- $" + sizes[i].getBasePrice());
         }
-
+        System.out.print("Enter your choice : ");
         int choice = readIntInRange(1, sizes.length);
         return sizes[choice - 1];
     }
@@ -135,6 +133,7 @@ public class UserInterface {
         for (int i = 0; i < breads.length; i++) {
             System.out.println((i + 1) + ")" + breads[i].getDisplayName());
         }
+        System.out.print("Enter your choice : ");
         int choice = readIntInRange(1, breads.length);
 
         return breads[choice - 1];
@@ -144,48 +143,102 @@ public class UserInterface {
         System.out.println("""
                 Would you like your bread toasted?
                 1) Yes
-                2) No
-                
-                Enter your choice : 
-                """);
+                2) No""");
+                System.out.print("Enter Your Choice:");
         int choice = readIntInRange(1, 2);
         return choice == 1;
     }
 
     private void chooseToppings(Sandwich sandwich) {
-        System.out.println(" ++++++++++++ Toppings Avalible ++++++++++++");
-        ToppingType[] tops = ToppingType.values();
-
+        // keeps looping until user chooses done
         boolean adding = true;
 
         while (adding) {
-            System.out.println("Choose a topping: ");
-            for (int i = 0; i < tops.length; i++) {
-                System.out.println((i + 1) + ")" + tops[i].getDisplayName());
+
+            System.out.println("\n********* Toppings Available *********");
+
+            int number = 1; // numbering for the user
+
+            // printing all regular toppings
+            System.out.println("\n--- Regular Toppings ---");
+            for (ToppingType t : ToppingType.values()) {
+                //only prints topping where category is REGULAR
+                if (t.isRegular()) {
+
+                    System.out.println(number + ") " + t.getDisplayName());
+                    // increase number so the next toppin has a new number
+                    number++;
+                }
             }
+
+            System.out.println("\n--- Meats ---");
+            for (ToppingType t : ToppingType.values()) {
+                if (t.isMeat()) {
+                    System.out.println(number + ") " + t.getDisplayName());
+                    number++;
+                }
+            }
+
+            System.out.println("\n--- Cheeses ---");
+            for (ToppingType t : ToppingType.values()) {
+                if (t.isCheese()) {
+                    System.out.println(number + ") " + t.getDisplayName());
+                    number++;
+                }
+            }
+
             System.out.println("0) Done");
+            System.out.println("Choose a topping:");
 
-            int choice = readIntInRange(0, tops.length);
-
+            int choice = readIntInRange(0, number - 1);
             if (choice == 0) break;
 
-            ToppingType selected = tops[choice - 1];
+            // Convert user choice into correct ToppingType
+            ToppingType selected = getToppingByNumber(choice);
 
             boolean extra = false;
 
-            // only meat & cheese has "extra" option
             if (selected.isMeat() || selected.isCheese()) {
-                System.out.println("""
-                        Would you like to get an extra portion?
-                        1) Yes
-                        2) No
-                        """);
+                System.out.println("Extra Portion?\n1) Yes\n2) No");
                 extra = readIntInRange(1, 2) == 1;
             }
+
             sandwich.addTopping(new Topping(selected, extra));
-            System.out.println(selected.getDisplayName() + " added.");
+            System.out.println(selected.getDisplayName() + " added!");
         }
     }
+
+    private ToppingType getToppingByNumber(int number) {
+
+        int index = 1;
+
+        // REGULAR
+        for (ToppingType t : ToppingType.values()) {
+            if (t.isRegular()) {
+                if (index == number) return t;
+                index++;
+            }
+        }
+
+        // MEAT
+        for (ToppingType t : ToppingType.values()) {
+            if (t.isMeat()) {
+                if (index == number) return t;
+                index++;
+            }
+        }
+
+        // CHEESE
+        for (ToppingType t : ToppingType.values()) {
+            if (t.isCheese()) {
+                if (index == number) return t;
+                index++;
+            }
+        }
+
+        return null; // should never happen if input is validated
+    }
+
 
     private void chooseSauces(Sandwich sandwich) {
         System.out.println("Sauces");
@@ -198,6 +251,7 @@ public class UserInterface {
                 System.out.println((i + 1) + ")" + sauces[i].getDisplayName());
             }
             System.out.println("0) Done");
+            System.out.println("Enter your choice : ");
             int choice = readIntInRange(0, sauces.length);
             if (choice == 0) break;
 
@@ -228,6 +282,7 @@ public class UserInterface {
             System.out.println((i + 1) + ") " + sizes[i].getDisplayName() +
                     " - $" + sizes[i].getPrice());
         }
+        System.out.println("Enter your choice : ");
         int choice = readIntInRange(1, sizes.length);
         return sizes[choice - 1];
     }
@@ -240,6 +295,7 @@ public class UserInterface {
         for (int i = 0; i < flavors.length; i++) {
             System.out.println((i + 1) + ") " + flavors[i].getDisplayName());
         }
+        System.out.println("Enter your choice : ");
         int choice = readIntInRange(1,flavors.length);
         return flavors[choice - 1];
     }
@@ -278,7 +334,6 @@ public class UserInterface {
         System.out.println(recieptText);
 
         ReceiptWriter.saveReceipt(recieptText);
-        System.out.println("Receipt saved!\n");
     }
 
 
@@ -295,10 +350,10 @@ public class UserInterface {
     private int readIntInRange(int min, int max) {
         while (true) {
             int value = readInt();
-            if (value >= min && value < +max) {
+            if (value >= min && value <= max) {
                 return value;
             }
-            System.out.print("Number must be between" + min + " and " + max + ": ");
+            System.out.print("Number must be between " + min + " and " + max + ": ");
         }
     }
 }

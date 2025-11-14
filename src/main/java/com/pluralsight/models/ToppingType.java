@@ -21,13 +21,13 @@ public enum ToppingType {
     BACON("Bacon", ToppingCategory.MEAT, 1.00, 2.00, 3.00,0.50,1.00,1.50),
 
     // Cheeses Options with addtional cost
-    AMERICAN("America", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    AMERICAN("America Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
 
-    PROVOLONE("Provolone", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    PROVOLONE("Provolone Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
 
-    CHEDDAR("Cheddar", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    CHEDDAR("Cheddar Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
 
-    SWISS("Swiss", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
+    SWISS("Swiss Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25,0.30,0.60,0.90),
 
     // Regular
     LETTUCE("Lettuce", ToppingCategory.REGULAR, 0, 0, 0,0,0,0),
