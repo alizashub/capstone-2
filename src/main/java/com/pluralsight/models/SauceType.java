@@ -1,5 +1,9 @@
 package com.pluralsight.models;
-
+/**
+ * SauceType
+ * shows different sauces a customer can add to a sandwich
+ * sauces are free, a customer can add multiple sauces
+ */
 public enum SauceType {
     MAYO("Mayo"),
     MUSTARD("Mustard"),

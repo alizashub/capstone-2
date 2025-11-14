@@ -1,5 +1,10 @@
 package com.pluralsight.models;
-
+/**
+ * ToppingType
+ * Represents possible toppings a customer can add to a sandwich
+ * Every topping stores a displayName, base price and a possible extraprice
+ * Each ToppingType is assigned a category. The category determines the pricing logic used in the Topping class.
+ */
 public enum ToppingType {
 
     // Meats Option with addtional cost

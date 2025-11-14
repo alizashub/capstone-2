@@ -1,5 +1,9 @@
 package com.pluralsight.models;
-
+/**
+ * DrinkSize
+ * shows available drink sizes and their prices
+ * each size stores a display name and a price
+ */
 public enum DrinkSize {
     SMALL(2.00,"Small"),
     MEDIUM(2.50,"Medium"),
@@ -20,7 +24,7 @@ public enum DrinkSize {
     public double getPrice() {
         return price;
     }
-
+    // when printed the enum shows its displayName instead of the ALL CAPS constant
     @Override
     public String toString(){
         return displayName;

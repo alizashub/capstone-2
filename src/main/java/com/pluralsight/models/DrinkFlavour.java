@@ -1,11 +1,15 @@
 package com.pluralsight.models;
-
+/**
+ * DrinkFlavour
+ * shows the flavours available for drinks
+ */
 public enum DrinkFlavour {
     COLA("Coke"),
     FANTA("Fanta"),
     SPRITE("Sprite"),
     PEPSI("PEPSI");
 
+    // label for printing
     private final String displayName;
 
     DrinkFlavour(String displayName){

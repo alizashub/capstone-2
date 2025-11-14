@@ -1,11 +1,16 @@
 package com.pluralsight.models;
 
 /**
- * Abstract parent class that holds sub classes like chip,drink and sandwich will inherit from this class.
+ * MenuItem ( Abstract parent class )
+ * This is the "Parent Class" for all the food items in the deli system
+ * - Sandwich
+ * - Drinks
+ * - Chips
+ * - Sides
  * Allows us to store all items in one ArrayList<MenuItem> inside order.
- *
  */
 public abstract class MenuItem {
+    // item name used for printing in the receipt
     private final String name;
 
     public MenuItem(String name) {
@@ -13,6 +18,8 @@ public abstract class MenuItem {
     }
     // each subclass implements its own princing rules
     public abstract double calculatePrice();
+
+
     // getter
     public String getName() {
         return name;

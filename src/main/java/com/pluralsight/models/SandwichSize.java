@@ -1,11 +1,13 @@
 package com.pluralsight.models;
 /**
+ * SandwichSize
  * Sizes for sandwiches. Each enum value stores :
  * inches(4,8,12) & base price for that size
  */
 public enum SandwichSize {
     // each constant is separated with commas and the last constant ends with a terminator ;
     // adding field for inches so that the data can be used for cal, the enum name is for readability
+    // each size has inches + a base price
     FOUR(4,5.50),
     EIGHT(8,7.00),
     TWELVE(12,8.50);
@@ -29,6 +31,7 @@ public enum SandwichSize {
         return basePrice;
     }
 
+    // formats the size eg. "4" -> 4"
     @Override
     public String toString(){
         return inches + "\"";
