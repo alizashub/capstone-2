@@ -137,6 +137,7 @@ public class UserInterface {
 
     private BreadType chooseBreadType() {
         System.out.println("\nChoose your bread type for the sandwich:");
+        // returns all the enum constants as an array so we can loop over it
         BreadType[] breads = BreadType.values();
 
         for (int i = 0; i < breads.length; i++) {
@@ -144,7 +145,7 @@ public class UserInterface {
         }
         System.out.print("Enter your choice : ");
         int choice = readIntInRange(1, breads.length);
-
+        // returns the chosen enum value choice -1 because user : 1 we convert that to the index which is 0
         return breads[choice - 1];
     }
 
@@ -360,6 +361,7 @@ public class UserInterface {
     }
 
     private int readIntInRange(int min, int max) {
+        //to prevent user from entering an invalid number ( smallest number allowed, largest allowed number )
         while (true) {
             int value = readInt();
             if (value >= min && value <= max) {
