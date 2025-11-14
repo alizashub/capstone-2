@@ -105,11 +105,16 @@ public class UserInterface {
         BreadType breadType = chooseBreadType();
         boolean toasted = chooseToasted();
 
+        // creating the sandwich object
         Sandwich sandwich = new Sandwich("Custom Sandwich", breadType, size, toasted);
 
         chooseToppings(sandwich);
         chooseSauces(sandwich);
 
+        // after sauces, topping etc the sandwhich object is add to the items array
+        //public void addItem(MenuItem item) {items.add(item);
+        //sandwhich becomes part of the current order
+        // after adding all the items, they all end up on one arraylist
         currentOrder.addItem(sandwich);
         System.out.println("Sandwich has been added!");
     }
@@ -161,6 +166,7 @@ public class UserInterface {
 
             // printing all regular toppings
             System.out.println("\n--- Regular Toppings ---");
+            //looping through the enum
             for (ToppingType t : ToppingType.values()) {
                 //only prints topping where category is REGULAR
                 if (t.isRegular()) {
@@ -203,13 +209,14 @@ public class UserInterface {
                 extra = readIntInRange(1, 2) == 1;
             }
 
+            // this adds a topping object in the arraylist
             sandwich.addTopping(new Topping(selected, extra));
             System.out.println(selected.getDisplayName() + " added!");
         }
     }
 
     private ToppingType getToppingByNumber(int number) {
-
+    // convers the user display number back to the correct ToppingType enum
         int index = 1;
 
         // REGULAR

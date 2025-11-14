@@ -8,6 +8,9 @@ import java.util.ArrayList;
  */
 
 public class Order {
+    // this list will store sandwich,drink,chips,sides
+    // all items are extended from menuitem so they sit into one arraylist
+    // userinterface collects the userchoice and create the actual object
     private ArrayList<MenuItem> items;
 
     public Order() {
@@ -27,6 +30,8 @@ public class Order {
     public double getTotal() {
         double total = 0.0;
 
+        // java automatically takes the calculatePrice method for all the items
+        // eg. Sandwich.calculatePrice, Drink.calcualtePrice
         for (MenuItem m : items) {
             total = total + m.calculatePrice();
         }
