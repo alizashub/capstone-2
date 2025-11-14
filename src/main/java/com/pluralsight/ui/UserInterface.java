@@ -102,9 +102,8 @@ public class UserInterface {
         System.out.print("Enter Your Choice:");
         return readInt();
     }
-
     private void addSandwich() {
-        System.out.println("++++++++++++ Let's Build A Sandwich ++++++++++++");
+        System.out.print("\n++++++++++++ Let's Build A Sandwich ++++++++++++");
 
         SandwichSize size = chooseSandwichSize();
         BreadType breadType = chooseBreadType();
@@ -121,7 +120,7 @@ public class UserInterface {
         //sandwhich becomes part of the current order
         // after adding all the items, they all end up on one arraylist
         currentOrder.addItem(sandwich);
-        System.out.println("Sandwich has been added!");
+        System.out.println("\nSandwich has been added!");
     }
 
     private SandwichSize chooseSandwichSize() {
@@ -137,7 +136,7 @@ public class UserInterface {
     }
 
     private BreadType chooseBreadType() {
-        System.out.println("Choose your bread type for the sandwich:");
+        System.out.println("\nChoose your bread type for the sandwich:");
         BreadType[] breads = BreadType.values();
 
         for (int i = 0; i < breads.length; i++) {
@@ -151,6 +150,7 @@ public class UserInterface {
 
     private boolean chooseToasted() {
         System.out.println("""
+                
                 Would you like your bread toasted?
                 1) Yes
                 2) No""");
@@ -199,7 +199,7 @@ public class UserInterface {
             }
 
             System.out.println("0) Done");
-            System.out.println("Choose a topping:");
+            System.out.print("\nChoose a topping:");
 
             int choice = readIntInRange(0, number - 1);
             if (choice == 0) break;
@@ -253,17 +253,17 @@ public class UserInterface {
 
 
     private void chooseSauces(Sandwich sandwich) {
-        System.out.println("Sauces");
+        System.out.println("********* Sauces *********");
         SauceType[] sauces = SauceType.values();
 
         boolean adding = true;
         while (adding) {
-            System.out.println("Pick a sauces you would like to add.");
+            System.out.println("Pick a sauces you would like to add :");
             for (int i = 0; i < sauces.length; i++) {
                 System.out.println((i + 1) + ")" + sauces[i].getDisplayName());
             }
-            System.out.println("0) Done");
-            System.out.println("Enter your choice : ");
+            System.out.println("0)  Done");
+            System.out.print("Enter your choice : ");
             int choice = readIntInRange(0, sauces.length);
             if (choice == 0) break;
 
