@@ -1,6 +1,6 @@
 # 🥪 Aliza's Deli App
 
-A simple, menu-driven **Java console application** that lets users build a complete deli order — sandwiches, toppings, sauces, drinks, chips, and sides — and automatically saves an **itemized receipt** as a `.txt` file.
+A **Java console application** that lets users build a complete deli order — sandwiches, toppings, sauces, drinks, chips, and sides — and automatically saves an **itemized receipt** as a `.txt` file.
 
 ---
 
@@ -69,45 +69,17 @@ Each order generates a detailed receipt including:
 // using enumeration
 public enum ToppingType {
 
-    // Meats Option with addtional cost
+    // Meats Option with additional cost
     STEAK("Steak", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
-
     HAM("Ham", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
 
-    SALAMI("Salami", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
-
-    ROAST_BEEF("Roast Beef", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
-
-    CHICKEN("Chicken", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
-
-    BACON("Bacon", ToppingCategory.MEAT, 1.00, 2.00, 3.00, 0.50, 1.00, 1.50),
-
-    // Cheeses Options with addtional cost
+    // Cheeses Options with additional cost
     AMERICAN("America Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
-
-    PROVOLONE("Provolone Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
-
-    CHEDDAR("Cheddar Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
-
     SWISS("Swiss Cheese", ToppingCategory.CHEESE, 0.75, 1.50, 2.25, 0.30, 0.60, 0.90),
 
     // Regular
     LETTUCE("Lettuce", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    PEPPERS("Peppers", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    ONIONS("Onions", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    TOMATOES("Tomatoes", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    JALAPENOS("Jalapeños", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    CUCUMBERS("Cucumbers", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
-    PICKLES("Pickles", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
     GUACAMOLE("Guacamole", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0),
-
     MUSHROOMS("Mushrooms", ToppingCategory.REGULAR, 0, 0, 0, 0, 0, 0);
 
     private final String displayName;
@@ -161,7 +133,7 @@ public enum ToppingType {
         }
     }
 }
-    
+
 ```
 
 # Project Structure
